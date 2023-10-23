@@ -1,6 +1,5 @@
 package com.example.Loja.de.roupas.Service;
 
-import com.example.Loja.de.roupas.Entity.Cliente;
 import com.example.Loja.de.roupas.Entity.Produto;
 
 import java.util.List;

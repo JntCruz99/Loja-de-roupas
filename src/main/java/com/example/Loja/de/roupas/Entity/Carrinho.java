@@ -22,8 +22,8 @@ public class Carrinho {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     @ManyToMany
     @JoinTable(name="produto_no_carrinho", joinColumns=

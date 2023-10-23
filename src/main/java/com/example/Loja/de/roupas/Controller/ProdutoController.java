@@ -1,8 +1,6 @@
 package com.example.Loja.de.roupas.Controller;
 
-import com.example.Loja.de.roupas.Entity.Cliente;
 import com.example.Loja.de.roupas.Entity.Produto;
-import com.example.Loja.de.roupas.Service.ClienteService;
 import com.example.Loja.de.roupas.Service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
