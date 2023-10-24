@@ -33,6 +33,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Usuario findByLogin(String login) {
+        return usuarioRepository.findByLogin(login);
+    }
+
+    @Override
     public void delete() {
 
     }

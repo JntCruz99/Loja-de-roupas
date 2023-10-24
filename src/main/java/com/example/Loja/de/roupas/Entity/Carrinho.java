@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,4 +31,23 @@ public class Carrinho {
             {@JoinColumn(name="carrinho_id")}, inverseJoinColumns=
             {@JoinColumn(name="produto_id")})
     private List<Produto> produtos;
+
+    public Double getTotal() {
+        if (total == null) {
+            total = 0.0;
+        }
+
+        for (Produto produto : produtos) {
+            total += produto.getPreco();
+        }
+
+        return total;
+    }
+
+    public void setProduto(Produto produto){
+        if (produtos == null) {
+            produtos = new ArrayList<>();
+        }
+        produtos.add(produto);
+    }
 }

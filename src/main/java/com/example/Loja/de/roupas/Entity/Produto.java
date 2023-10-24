@@ -22,6 +22,8 @@ public class Produto {
 
     private Double preco;
 
+    private int qtd;
+
     @JsonIgnore
     @ManyToMany(mappedBy="produtos")
     private List<Carrinho> carrinho;

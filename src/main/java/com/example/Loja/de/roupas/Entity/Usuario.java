@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,6 +36,13 @@ public class Usuario implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    public void setCarrinho(Carrinho carrinho){
+        if (carrinhos == null) {
+            carrinhos = new ArrayList<>();
+        }
+        carrinhos.add(carrinho);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

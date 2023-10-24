@@ -22,4 +22,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query("SELECT carrinho FROM Carrinho carrinho WHERE carrinho.usuario.id = :usuarioId AND carrinho.status = :status")
     List<Carrinho> findCarrinhosPendentesByClienteId(@Param("usuarioId") Long clienteId, @Param("status") Status status);
+
+
 }

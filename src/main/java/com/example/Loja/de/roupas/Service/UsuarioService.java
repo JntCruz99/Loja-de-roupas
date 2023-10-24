@@ -10,6 +10,7 @@ public interface UsuarioService {
     Usuario findById(Long id);
 
     List<Usuario> findAll();
+    Usuario findByLogin(String login);
 
     void delete();
 }
