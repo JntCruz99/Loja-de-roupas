@@ -26,28 +26,25 @@ public class Carrinho {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @ManyToMany
-    @JoinTable(name="produto_no_carrinho", joinColumns=
-            {@JoinColumn(name="carrinho_id")}, inverseJoinColumns=
-            {@JoinColumn(name="produto_id")})
-    private List<Produto> produtos;
+    @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL)
+    private List<Item> itens;
 
     public Double getTotal() {
         if (total == null) {
             total = 0.0;
         }
 
-        for (Produto produto : produtos) {
-            total += produto.getPreco();
+        for (Item i : itens) {
+            total += i.getProduto().getPreco();
         }
 
         return total;
     }
 
-    public void setProduto(Produto produto){
-        if (produtos == null) {
-            produtos = new ArrayList<>();
+    public void setItem(Item item){
+        if (itens == null) {
+            itens = new ArrayList<>();
         }
-        produtos.add(produto);
+        itens.add(item);
     }
 }

@@ -16,7 +16,7 @@ public interface CarrinhoService {
 
     List<Carrinho> findCarrinhosByUsuarioUsername(String username);
 
-    Carrinho setCarrinhoUsuario(Authentication authentication, Long produtoId);
+    Carrinho setCarrinhoUsuario(Authentication authentication, Long produtoId, int qtd);
 
     void delete();
 }

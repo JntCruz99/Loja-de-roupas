@@ -1,4 +1,4 @@
-package com.example.Loja.de.roupas.Service;
+package com.example.Loja.de.roupas.Service.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

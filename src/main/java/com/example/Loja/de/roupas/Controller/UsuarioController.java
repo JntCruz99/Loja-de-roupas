@@ -4,21 +4,16 @@ import com.example.Loja.de.roupas.Entity.Role;
 import com.example.Loja.de.roupas.Entity.Usuario;
 import com.example.Loja.de.roupas.Entity.enums.RoleName;
 import com.example.Loja.de.roupas.Repository.RoleRepository;
-import com.example.Loja.de.roupas.Service.TokenService;
+import com.example.Loja.de.roupas.Service.security.TokenService;
 import com.example.Loja.de.roupas.Service.UsuarioService;
 import com.example.Loja.de.roupas.dto.Login;
 import com.example.Loja.de.roupas.dto.TokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class UsuarioController {

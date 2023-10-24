@@ -1,4 +1,4 @@
-package com.example.Loja.de.roupas.Service;
+package com.example.Loja.de.roupas.Service.security;
 
 import com.example.Loja.de.roupas.Repository.UsuarioRepository;
 import jakarta.servlet.FilterChain;

@@ -35,9 +35,9 @@ public class CarrinhoController {
         return ResponseEntity.status(HttpStatus.OK).body(carrinhos);
     }
 
-    @PostMapping("/produto/{produtoId}")
-    public ResponseEntity<Carrinho> setCarrinhoUsuario(Authentication authentication, @PathVariable Long produtoId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(carrinhoService.setCarrinhoUsuario(authentication, produtoId));
+    @PostMapping("/produto/{produtoId}/{quatidadePd}")
+    public ResponseEntity<Carrinho> setCarrinhoUsuario(Authentication authentication, @PathVariable Long produtoId, @PathVariable int quatidadePd) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(carrinhoService.setCarrinhoUsuario(authentication, produtoId, quatidadePd));
     }
 }
 

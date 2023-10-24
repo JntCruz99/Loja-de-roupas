@@ -22,15 +22,14 @@ public class Produto {
 
     private Double preco;
 
-    private int qtd;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy="produtos")
-    private List<Carrinho> carrinho;
 
     @ManyToMany
     @JoinTable(name="categorias_do_produto", joinColumns=
             {@JoinColumn(name="produto_id")}, inverseJoinColumns=
             {@JoinColumn(name="categoria_id")})
     private List<Categoria> categorias;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    private List<Item> itens;
 }

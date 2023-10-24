@@ -1,11 +1,14 @@
 package com.example.Loja.de.roupas.Service.Impl;
 
 import com.example.Loja.de.roupas.Entity.Carrinho;
+import com.example.Loja.de.roupas.Entity.Item;
 import com.example.Loja.de.roupas.Entity.Produto;
 import com.example.Loja.de.roupas.Entity.Usuario;
 import com.example.Loja.de.roupas.Entity.enums.Status;
 import com.example.Loja.de.roupas.Repository.CarrinhoRepository;
+import com.example.Loja.de.roupas.Repository.ItemRepository;
 import com.example.Loja.de.roupas.Service.CarrinhoService;
+import com.example.Loja.de.roupas.Service.ItemService;
 import com.example.Loja.de.roupas.Service.ProdutoService;
 import com.example.Loja.de.roupas.Service.UsuarioService;
 import com.example.Loja.de.roupas.Service.exceptions.EntityNotFoundExceptions;
@@ -26,6 +29,9 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 
     @Autowired
     private CarrinhoRepository carrinhoRepository;
+
+    @Autowired
+    private ItemService itemService;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -56,7 +62,7 @@ public class CarrinhoServiceImpl implements CarrinhoService {
     }
 
     @Override
-    public Carrinho setCarrinhoUsuario(Authentication authentication, Long produtoId) {
+    public Carrinho setCarrinhoUsuario(Authentication authentication, Long produtoId, int qtd) {
         if (authentication != null) {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String username = userDetails.getUsername();
@@ -74,20 +80,25 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 
             if (carrinhoPendente == null) {
                 Carrinho newCarrinho = new Carrinho();
+                Item newItem = new Item(qtd, produto, newCarrinho);
                 newCarrinho.setStatus(Status.PENDENTE);
-                newCarrinho.setProduto(produto);
+                newCarrinho.setItem(newItem);
                 newCarrinho.setUsuario(usuario);
                 newCarrinho.setTotal(newCarrinho.getTotal());
                 usuario.setCarrinho(newCarrinho);
+
                 carrinhoRepository.save(newCarrinho);
+                itemService.save(newItem);
                 usuarioService.save(usuario);
                 return newCarrinho;
             } else {
-                carrinhoPendente.setProduto(produto);
+                Item newItem = new Item(qtd, produto, carrinhoPendente);
+                carrinhoPendente.setItem(newItem);
                 carrinhoPendente.setUsuario(usuario);
                 carrinhoPendente.setTotal(carrinhoPendente.getTotal());
                 usuario.setCarrinho(carrinhoPendente);
                 carrinhoRepository.save(carrinhoPendente);
+                itemService.save(newItem);
                 usuarioService.save(usuario);
                 return carrinhoPendente;
             }
