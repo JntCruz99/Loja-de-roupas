@@ -9,6 +9,7 @@ import com.example.Loja.de.roupas.Service.CarrinhoService;
 import com.example.Loja.de.roupas.Service.ProdutoService;
 import com.example.Loja.de.roupas.Service.UsuarioService;
 import com.example.Loja.de.roupas.Service.exceptions.EntityNotFoundExceptions;
+import com.example.Loja.de.roupas.Service.exceptions.NotAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -76,6 +77,7 @@ public class CarrinhoServiceImpl implements CarrinhoService {
                 newCarrinho.setStatus(Status.PENDENTE);
                 newCarrinho.setProduto(produto);
                 newCarrinho.setUsuario(usuario);
+                newCarrinho.setTotal(newCarrinho.getTotal());
                 usuario.setCarrinho(newCarrinho);
                 carrinhoRepository.save(newCarrinho);
                 usuarioService.save(usuario);
@@ -83,6 +85,7 @@ public class CarrinhoServiceImpl implements CarrinhoService {
             } else {
                 carrinhoPendente.setProduto(produto);
                 carrinhoPendente.setUsuario(usuario);
+                carrinhoPendente.setTotal(carrinhoPendente.getTotal());
                 usuario.setCarrinho(carrinhoPendente);
                 carrinhoRepository.save(carrinhoPendente);
                 usuarioService.save(usuario);
@@ -90,7 +93,7 @@ public class CarrinhoServiceImpl implements CarrinhoService {
             }
         }
 
-        return null;
+        throw new NotAuthentication("Não autenticado" + authentication);
     }
 
 
