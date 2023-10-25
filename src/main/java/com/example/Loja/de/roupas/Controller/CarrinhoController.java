@@ -39,5 +39,10 @@ public class CarrinhoController {
     public ResponseEntity<Carrinho> setCarrinhoUsuario(Authentication authentication, @PathVariable Long produtoId, @PathVariable int quatidadePd) {
         return ResponseEntity.status(HttpStatus.CREATED).body(carrinhoService.setCarrinhoUsuario(authentication, produtoId, quatidadePd));
     }
+
+    @DeleteMapping("/{idItem}")
+    public void removeItem(@PathVariable Long idItem){
+        carrinhoService.removeItemCarrinho(idItem);
+    }
 }
 

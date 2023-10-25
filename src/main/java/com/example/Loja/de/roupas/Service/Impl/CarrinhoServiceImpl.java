@@ -107,6 +107,11 @@ public class CarrinhoServiceImpl implements CarrinhoService {
         throw new NotAuthentication("Não autenticado" + authentication);
     }
 
+    @Override
+    public void removeItemCarrinho(Long itemId) {
+        itemService.delete(itemId);
+    }
+
 
     @Override
     public void delete() {

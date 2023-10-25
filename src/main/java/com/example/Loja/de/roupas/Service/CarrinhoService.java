@@ -18,5 +18,7 @@ public interface CarrinhoService {
 
     Carrinho setCarrinhoUsuario(Authentication authentication, Long produtoId, int qtd);
 
+    void removeItemCarrinho(Long itemId);
+
     void delete();
 }

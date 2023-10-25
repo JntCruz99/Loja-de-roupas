@@ -3,6 +3,7 @@ package com.example.Loja.de.roupas.Service.Impl;
 import com.example.Loja.de.roupas.Entity.Item;
 import com.example.Loja.de.roupas.Repository.ItemRepository;
 import com.example.Loja.de.roupas.Service.ItemService;
+import com.example.Loja.de.roupas.Service.exceptions.EntityNotFoundExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,17 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item save(Item item) {
         return itemRepository.save(item);
+    }
+
+    @Override
+    public Item findById(Long id) {
+        return itemRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundExceptions("Id Não encontrado: " + id));
+    }
+
+    @Override
+    public void delete(Long id) {
+        Item item = findById(id);
+        itemRepository.delete(item);
     }
 }

@@ -30,12 +30,12 @@ public class Carrinho {
     private List<Item> itens;
 
     public Double getTotal() {
-        if (total == null) {
-            total = 0.0;
-        }
+        total = 0.0;
 
-        for (Item i : itens) {
-            total += i.getProduto().getPreco();
+        if (itens != null) {
+            for (Item i : itens) {
+                total += i.getProduto().getPreco() * i.getQtd();
+            }
         }
 
         return total;
