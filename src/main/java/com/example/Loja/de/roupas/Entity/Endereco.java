@@ -1,5 +1,6 @@
 package com.example.Loja.de.roupas.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,4 +24,9 @@ public class Endereco {
     private String estado;
 
     private String cidade;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }

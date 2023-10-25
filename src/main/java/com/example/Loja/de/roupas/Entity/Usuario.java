@@ -33,6 +33,9 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<Carrinho> carrinhos;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Endereco> enderecos;
+
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;

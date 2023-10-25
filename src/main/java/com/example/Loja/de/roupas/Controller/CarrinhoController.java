@@ -20,8 +20,6 @@ public class CarrinhoController {
     @Autowired
     private CarrinhoService carrinhoService;
 
-
-
     @GetMapping
     public ResponseEntity<List<Carrinho>> carrinhoList(Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
