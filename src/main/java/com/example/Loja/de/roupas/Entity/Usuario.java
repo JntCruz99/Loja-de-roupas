@@ -28,13 +28,20 @@ public class Usuario implements UserDetails {
 
     private String endereco;
 
+    private String email;
+
     private boolean verificado;
+
+    @OneToOne
+    @JoinColumn(name = "telefone_id")
+    private Telefone telefone;
 
     @OneToMany(mappedBy = "usuario")
     private List<Carrinho> carrinhos;
 
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> enderecos;
+
 
     @ManyToOne
     @JoinColumn(name = "role_id")
